@@ -3,10 +3,10 @@ import requests
 
 hackdash = "https://hackdash.org/projects/5ce8f714002e766ac0f23602"
 
-app = Flask(__name__, static_url_path='', static_folder="static")
+application = Flask(__name__, static_url_path='', static_folder="static")
 
 
-@app.route('/')
+@application.route('/')
 def index():
     return render_template("index.html")
 
@@ -21,4 +21,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    application.run(host='0.0.0.0')
