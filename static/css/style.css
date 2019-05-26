@@ -98,7 +98,8 @@ footer.page-footer {
 }
 
 #table2 td:last-child {
-    color: gold;
+  color: limegreen;
+  font-size: 2rem;
 }
 
 .logo {

@@ -12,6 +12,12 @@ $(document).on('click','#download-button', function(event, test){
 
 });
 
+$(document).on('click','#back', function(event){
+    event.preventDefault();
+    $(location).attr('href', $(location).attr('origin'));
+});
+
+
 
 /*$(document).ready(function () {
     $('#download-button').on('click', function (e) {

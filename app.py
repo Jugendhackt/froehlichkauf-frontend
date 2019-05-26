@@ -40,6 +40,13 @@ def barcode(barcode):
     return render_template("product.html", product=api_data.json(), root=root)
 
 
+@application.context_processor
+def numbers():
+    def get_first_number(float_number):
+        return int(str(float_number).split(".")[0])
+    return dict(format_price=get_first_number)
+
+
 # def factors(num):
 #   return [x for x in range(1, num+1) if num%x==0]
 #

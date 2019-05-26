@@ -16,7 +16,9 @@
 <body>
 <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo teal-text">BuyingCredit</a>
+        <a id="logo-container" href="#" class="brand-logo teal-text"><img class="responsive-img logo"
+                                                                          alt="Ein wunderbares Logo, geschaffen von Niklas!"
+                                                                          src="{{ root }}/img/logo.jpg"> <span>Fröhlichkauf</span></a>
 
         <!--
         <ul class="right hide-on-med-and-down">
@@ -54,6 +56,7 @@
 
 <div class="container">
     <div class="section">
+        <a href="#" id="back">< Zurück zur Startseite </a>
 
         <!--   Icon Section   -->
         <div class="row">
@@ -82,7 +85,7 @@
 
                 <tr>
                     <td>Verpackung</td>
-                    <td>{{ product["packaing"] }}</td>
+                    <td>{{ product["packaging"] }}</td>
                 </tr>
 
                 <tr>
@@ -99,39 +102,94 @@
             <table id="table2" class="table responsive-table" style="table-layout: fixed;">
                 <tbody>
                 <tr>
+
                     <td>Umwelt</td>
                     <td>
-                        <i class="fa fa-star-half"></i>
+                        {% for i in range(0, product["scoreUmwelt"]) %}
+                            <i class="fa fa-star"></i>
+                        {% endfor %}
+
+                        {% if product["scoreUmweltHalve"] %}
+                            <i class="fa fa-star-half"></i>
+                        {% endif %}
                     </td>
                 </tr>
                 <tr>
                     <td>Verpackung</td>
-                    <td>{{ product["country"] }}</td>
+                    <td>
+                        {% for i in range(0, product["scoreVerpackung"]) %}
+                            <i class="fa fa-star"></i>
+                        {% endfor %}
+
+                        {% if product["scoreVerpackungHalve"] %}
+                            <i class="fa fa-star-half"></i>
+                        {% endif %}
+                    </td>
                 </tr>
 
                 <tr>
                     <td>Herkunft</td>
-                    <td>{{ product["code"] }}</td>
+                    <td>
+                        {% for i in range(0, product["scoreHerkunft"]) %}
+                            <i class="fa fa-star"></i>
+                        {% endfor %}
+
+                        {% if product["scoreHerkunftHalve"] %}
+                            <i class="fa fa-star-half"></i>
+                        {% endif %}
+                    </td>
                 </tr>
 
                 <tr>
                     <td>Ethik</td>
-                    <td>{{ ", ".join(product["contents"]) }}</td>
+                    <td>
+                        {% for i in range(0, product["scoreEthik"]) %}
+                            <i class="fa fa-star"></i>
+                        {% endfor %}
+
+                        {% if product["scoreEthikHalve"] %}
+                            <i class="fa fa-star-half"></i>
+                        {% endif %}
+                    </td>
                 </tr>
 
                 <tr>
                     <td>Gesundheit</td>
-                    <td>{{ product["packaging"] }}</td>
+                    <td>
+                    {% for i in range(0, product["scoreHealth"]) %}
+                        <i class="fa fa-star"></i>
+                    {% endfor %}
+
+                    {% if product["scoreHealthHalve"] %}
+                        <i class="fa fa-star-half"></i>
+                    {% endif %}
+                    </td>
                 </tr>
 
                 <tr>
                     <td>Inhaltsstoffe</td>
-                    <td>{{ "Ja" if product["reuseable"] else "Nein" }}</td>
+                    <td>
+                        {% for i in range(0, product["scoreIngredients"]) %}
+                            <i class="fa fa-star"></i>
+                        {% endfor %}
+
+                        {% if product["scoreIngredientsHalve"] %}
+                            <i class="fa fa-star-half"></i>
+                        {% endif %}
+                    </td>
                 </tr>
 
                 <tr>
                     <td>Nährwert</td>
-                    <td>{{ "Ja" if product["reuseable"] else "Nein" }}</td>
+                    <td>
+                        {% for i in range(0, product["scoreNutrition"]) %}
+                            <i class="fa fa-star"></i>
+                        {% endfor %}
+
+                        {% if product["scoreNutritionHalve"] %}
+                            <i class="fa fa-star-half"></i>
+                        {% endif %}
+                    </td>
                 </tr>
                 </tbody>
             </table>
