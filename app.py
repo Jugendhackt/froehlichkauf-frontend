@@ -37,7 +37,10 @@ def barcode(barcode):
 
     print(api_data.text)
 
-    return render_template("product.html", product=api_data.json(), root=root)
+    if api_data.status_code == 200 and api_data.json() is not None:
+        return render_template("product.html", product=api_data.json(), root=root)
+    else:
+        return render_template("error.html", root=root)
 
 
 @application.context_processor
