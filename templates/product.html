@@ -8,15 +8,15 @@
     <!-- CSS  -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="css/star-rating.css" type="text/css" rel="stylesheet" />
+    <link href="{{ root }}/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ root }}/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ root }}/css/star-rating.css" type="text/css" rel="stylesheet"/>
 
 </head>
 <body>
 <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo teal-text"><img class="responsive-img logo" alt="Ein wunderbares Logo, geschaffen von Niklas!" src="img/logo.jpg"> <span>Fröhlichkauf</span></a>
+        <a id="logo-container" href="#" class="brand-logo teal-text">BuyingCredit</a>
 
         <!--
         <ul class="right hide-on-med-and-down">
@@ -31,34 +31,13 @@
     </div>
 </nav>
 
-<div id="index-banner" class="parallax-container">
+<div id="index-banner" class="parallax-container" style="height: 15em;">
     <div class="section no-pad-bot">
         <div class="container">
             <br><br>
-            <h1 class="header center white-text">Fröhlichkauf</h1>
-            <div class="row center">
-                <!--<h5 id="description" class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>--->
-                <p id="description" class="header col s12 white-text">Das Social Credit-System für deine ganz
-                    persönlichen Einkäufe! Erfahre auf einen Blick, wie dein täglicher Verbrauch abschneidet - sowohl
-                    für deine Gesundheit, für die Umwelt und für andere Menschen! Dabei kannst du dich mit deinen
-                    Freunden und Bekannten vergleichen und somit ermitteln, wer den nachhaltigsten Verbrauch hat! Zudem
-                    geben wir dir hilfreiche Tipps, die dir einen Umstieg auf eine nachhaltige Lebensweise erleichtern
-                    sollen.</p>
-            </div>
+            <h1 class="header center white-text">Produkt - {{ product["name"] }}</h1>
 
-            <br>
-
-            <div class="row center">
-                <div id="barcode-input" class="input-field col s6 center">
-                    <input placeholder="Barcode" id="barcode" type="text" class="validate">
-                    <label for="barcode">Barcode</label>
-                </div>
-            </div>
-
-            <div class="row center">
-                <a href="#" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Scan
-                    Code!</a>
-            </div>
+            <p>{{ product["description"] }}</p>
 
             <div id="interactive" class="viewport"></div>
 
@@ -78,48 +57,88 @@
 
         <!--   Icon Section   -->
         <div class="row">
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center brown-text"><i class="fas fa-globe-europe"></i></h2>
-                    <h3 class="center">Umwelt</h3>
+            <h2>Info</h2>
 
-                    <p class="light">Das Umwelt-Ranking setzt sich gleichermaßen aus den Aspekten Verpackung und
-                        Herkunftsland zusammen. Keine Verpackung wird mit 5/5 Punkten bewertet, Glass mit 3, Papier mit
-                        2 und Plastik mit 0 Punkten.
-                        Dazu wird positiv gewertet, wenn das Projekt aus demselben Land stammt, in dem sich der Käufer
-                        befindet.</p>
-                </div>
-            </div>
+            <table id="table1" class="table responsive-table" style="table-layout: fixed;">
+                <tbody>
+                <tr>
+                    <td>Hersteller</td>
+                    <td>{{ product["supplier"] }}</td>
+                </tr>
+                <tr>
+                    <td>Land</td>
+                    <td>{{ product["country"] }}</td>
+                </tr>
 
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center brown-text"><i class="fas fa-book"></i></h2>
-                    <h3 class="center">Ethik</h3>
+                <tr>
+                    <td>EAN</td>
+                    <td>{{ product["code"] }}</td>
+                </tr>
 
-                    <p class="light">Im Ethik-Ranking werden die Herstellungsbedingungen bewertet. Größere Marken wurden
-                        nach ihrem Vorgehen mit einem Score von 0 bis 5 bewertet. Außerdem werden Siegel, wie z.B. Bio
-                        oder Fairtrade, in der Produktbeschreibung aufgeführt und sollen in Zukunft positiv
-                        berücksichtigt werden.</p>
-                </div>
-            </div>
+                <tr>
+                    <td>Inhaltsstoffe</td>
+                    <td>{{ ", ".join(product["contents"]) }}</td>
+                </tr>
 
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center brown-text"><i class="fas fa-medkit"></i></h2>
-                    <h3 class="center">Gesundheit</h3>
+                <tr>
+                    <td>Verpackung</td>
+                    <td>{{ product["packaing"] }}</td>
+                </tr>
 
-                    <p class="light">Das Gesundheits-Ranking setzt sich zu 20 Prozent aus den Inhaltsstoffen und zu 80
-                        Prozent aus den Nährwerten des Produkts zusammen.
-                        Gesundheitsschädliche Inhaltsstoffe können zu einem Abzug von Punkten führen, während andere
-                        Inhaltsstoffe sich positiv auswirken können. Die Bepunktung für Nährwerte orientiert sich an
-                        empfohlenen Grenzwerten nach der britischen Lebensmittelbehörde Food Standards Agency.</p>
-                </div>
-            </div>
+                <tr>
+                    <td>Wiederverwertbar?</td>
+                    <td>{{ "Ja" if product["reuseable"] else "Nein" }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <h2>Bewertung</h2>
+
+            <table id="table2" class="table responsive-table" style="table-layout: fixed;">
+                <tbody>
+                <tr>
+                    <td>Umwelt</td>
+                    <td>
+                        <i class="fa fa-star-half"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Verpackung</td>
+                    <td>{{ product["country"] }}</td>
+                </tr>
+
+                <tr>
+                    <td>Herkunft</td>
+                    <td>{{ product["code"] }}</td>
+                </tr>
+
+                <tr>
+                    <td>Ethik</td>
+                    <td>{{ ", ".join(product["contents"]) }}</td>
+                </tr>
+
+                <tr>
+                    <td>Gesundheit</td>
+                    <td>{{ product["packaging"] }}</td>
+                </tr>
+
+                <tr>
+                    <td>Inhaltsstoffe</td>
+                    <td>{{ "Ja" if product["reuseable"] else "Nein" }}</td>
+                </tr>
+
+                <tr>
+                    <td>Nährwert</td>
+                    <td>{{ "Ja" if product["reuseable"] else "Nein" }}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
 
     </div>
 </div>
-
 <!--
 
 <div class="parallax-container valign-wrapper">
@@ -201,9 +220,9 @@
 
 <!--  Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="js/materialize.js"></script>
-<script src="js/init.js"></script>
-<script src="js/main.js"></script>
+<script src="{{ root }}/js/materialize.js"></script>
+<script src="{{ root }}/js/init.js"></script>
+<script src="{{ root }}/js/main.js"></script>
 
 </body>
 </html>

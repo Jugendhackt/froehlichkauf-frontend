@@ -20,10 +20,11 @@ p {
 }
 
 .parallax-container {
-  min-height: 380px;
+  /* min-height: 380px; */
   line-height: 0;
-  height: auto;
+  /* height: auto; */
   color: rgba(255,255,255,.9);
+  height: 50em;
 }
   .parallax-container .section {
     width: 100%;
@@ -34,6 +35,11 @@ p {
     position: absolute;
     top: 40%;
   }
+
+  #barcode-input {
+      width: 100%;
+  }
+
   #index-banner .section {
     top: 10%;
   }
@@ -42,6 +48,12 @@ p {
 @media only screen and (max-width : 600px) {
   #index-banner .section {
     top: 0;
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  .parallax-container {
+    height: 40em;
   }
 }
 
@@ -58,4 +70,42 @@ footer.page-footer {
 
 .footer-link:hover {
   text-decoration: underline;
+}
+
+
+/*
+ * Style
+ *
+ */
+
+
+#barcode-input {
+  float: none;
+  margin-right: auto;
+}
+
+#barcode {
+    color: white;
+}
+
+#barcode-input label {
+  color: white;
+}
+
+
+.table td:first-child {
+  text-align: center;
+}
+
+#table2 td:last-child {
+    color: gold;
+}
+
+.logo {
+  width: 1.5em;
+}
+
+#logo-container img, #logo-container span {
+  display: inline-block;
+  vertical-align: middle;
 }
